@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+sudo apt-get update -y
 sudo apt-get install -y socat
 
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/$MINIKUBE_VERSION/minikube-linux-amd64 \
