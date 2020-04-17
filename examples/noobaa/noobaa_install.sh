@@ -23,15 +23,15 @@ function install_noobaa() {
 	echo "Installed NooBaa"
 	sleep 15
 	echo "Creating Backing Store"
-	${DIR}/noobaa backingstore create pv-pool my-pv-bs --num-volumes 3 --pv-size-gb 1 --storage-class standard > /dev/null 2>&1
+	${DIR}/noobaa backingstore create pv-pool my-pv-bs --num-volumes 3 --pv-size-gb 1 --storage-class standard
 	echo "Created Backing Store"
 	sleep 15
 	echo "Delete Bucket Class"
-	${DIR}/noobaa bucketclass delete noobaa-default-bucket-class > /dev/null 2>&1
+	${DIR}/noobaa bucketclass delete noobaa-default-bucket-class
 	echo "Delete Bucket Class"
 	sleep 15
 	echo "Creating Bucket Class"
-	${DIR}/noobaa bucketclass create  noobaa-default-bucket-class --backingstores=my-pv-bs --placement="" > /dev/null 2>&1
+	${DIR}/noobaa bucketclass create  noobaa-default-bucket-class --backingstores=my-pv-bs --placement=""
 	echo "Created Bucket Class"
 	echo "done"
 }
@@ -45,14 +45,14 @@ function build_data_loader() {
 	docker build -f ${DIR}/Dockerfile-awscli-alpine -t awscli-alpine . > /dev/null 2>&1
 	if [[ $driver_check != *"none"* ]]; then
       eval $(minikube docker-env -u)
-    fi
+  fi
 	echo "done"
 }
 
 function run_data_loader() {
 	echo -n "Creating test OBC..."
 	kubectl create -f ${DIR}/obc.yaml >/dev/null 2>&1
-	while [ -z "`kubectl get obc | grep Bound`" ]; do sleep 10; ${DIR}/noobaa status; done
+	while [ -z "`kubectl get obc | grep Bound`" ]; do sleep 10;  kubectl describe obc/my-bucket-claim; done
 	echo "done"
 
 	key_id=$(${DIR}/noobaa status 2>&1 | grep AWS_ACCESS_KEY_ID | awk -F ": " '{print $2}')
