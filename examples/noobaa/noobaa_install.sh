@@ -51,8 +51,8 @@ function build_data_loader() {
 
 function run_data_loader() {
 	echo -n "Creating test OBC..."
-	kubectl create -f ${DIR}/obc.yaml >/dev/null 2>&1
-	while [ -z "`kubectl get obc | grep Bound`" ]; do sleep 10;  kubectl describe obc/my-bucket-claim; done
+	kubectl create -f ${DIR}/obc.yaml
+	while [ -z "`kubectl get obc | grep Bound`" ]; do sleep 10;  kubectl describe obc/my-bucket-claim; kubectl get pods;  done
 	echo "done"
 
 	key_id=$(${DIR}/noobaa status 2>&1 | grep AWS_ACCESS_KEY_ID | awk -F ": " '{print $2}')
