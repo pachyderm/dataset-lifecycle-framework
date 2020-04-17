@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 
-export DOCKER_REGISTRY_COMPONENTS="$DOCKER_REGISTRY"
-export DOCKER_REGISTRY_SECRET="regcred"
-
-cd dataset-lifecycle-framework/examples/noobaa
+cd ./examples/noobaa
 
 export NOOBAA_HOME=`pwd`
 cd ../hive/k8s

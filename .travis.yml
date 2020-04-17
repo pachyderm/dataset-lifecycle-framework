@@ -5,3 +5,5 @@ script:
   - source ./travis/configuration.sh
   - ./travis/install_minikube.sh
   - ./travis/build_dlf.sh
+  - ./travis/noobaa_test.sh
+  - ./travis/test_hive.sh

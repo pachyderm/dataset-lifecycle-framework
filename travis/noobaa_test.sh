@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-cd dataset-lifecycle-framework
 ./examples/noobaa/noobaa status
 
 ./examples/noobaa/create_dataset_desc.sh
