@@ -1,6 +1,6 @@
 services:
   - docker
-dist: trusty
+dist: bionic
 
 script:
   - source ./travis/configuration.sh
