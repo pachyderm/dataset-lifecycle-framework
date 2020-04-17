@@ -2,8 +2,5 @@ services:
   - docker
 
 script:
-  - source ./configuration.sh
-  - ./install_minikube.sh
-  - ./build_dlf.sh
-  - ./noobaa_test.sh
-  - ./test_hive.sh
+  - source ./travis/configuration.sh
+  - ./travis/install_minikube.sh
