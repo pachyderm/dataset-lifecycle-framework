@@ -4,3 +4,4 @@ services:
 script:
   - source ./travis/configuration.sh
   - ./travis/install_minikube.sh
+  - ./travis/build_dlf.sh

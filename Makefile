@@ -6,7 +6,7 @@ PULL_COMPONENTS ?= false
 
 DOCKER_REGISTRY_SIDECARS ?= quay.io/k8scsi
 # if you pull from public use quay.io/k8scsi
-PULL_SIDECARS ?= false
+PULL_SIDECARS ?= true
 
 DATASET_OPERATOR_NAMESPACE ?= default
 NAMESPACES_TO_MONITOR ?= default
@@ -16,7 +16,7 @@ EXTERNAL_ATTACHER_TAG ?= v2.1.1
 #working in ppc64le v2.1.1
 EXTERNAL_PROVISIONER_TAG ?= v1.5.0
 #working in ppc64le v1.5.0
-NODE_DRIVER_REGISTRAR_TAG ?= master
+NODE_DRIVER_REGISTRAR_TAG ?= canary
 #working in ppc64le master
 
 minikube-uninstall: noobaa-uninstall undeployment
