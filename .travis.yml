@@ -1,6 +1,5 @@
 services:
   - docker
-dist: bionic
 
 script:
   - source ./travis/configuration.sh
