@@ -17,6 +17,9 @@ spec:
         - name: dataset-operator
           # Replace this with the built image name
           image: ${DATASET_OPERATOR_IMAGE}
+          resources:
+            limits:
+              ephemeral-storage: 50Mi
           command:
             - dataset-operator
           imagePullPolicy: IfNotPresent

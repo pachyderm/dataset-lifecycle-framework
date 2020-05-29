@@ -18,6 +18,9 @@ spec:
       containers:
         - name: node-driver-registrar
           image: ${NODE_DRIVER_REGISTRAR_IMAGE}
+          resources:
+            limits:
+              ephemeral-storage: 50Mi
           lifecycle:
             preStop:
               exec:
@@ -43,6 +46,9 @@ spec:
               add: ["SYS_ADMIN"]
             allowPrivilegeEscalation: true
           image: ${CSI_NFS_IMAGE}
+          resources:
+            limits:
+              ephemeral-storage: 50Mi
           args :
             - "--nodeid=$(NODE_ID)"
             - "--endpoint=$(CSI_ENDPOINT)"

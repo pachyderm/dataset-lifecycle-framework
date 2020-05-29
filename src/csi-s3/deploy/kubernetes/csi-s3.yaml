@@ -57,6 +57,9 @@ spec:
       containers:
         - name: driver-registrar
           image: ${NODE_DRIVER_REGISTRAR_IMAGE}
+          resources:
+            limits:
+              ephemeral-storage: 50Mi
           args:
             - "--kubelet-registration-path=$(DRIVER_REG_SOCK_PATH)"
             - "--v=4"
@@ -82,6 +85,9 @@ spec:
               add: ["SYS_ADMIN"]
             allowPrivilegeEscalation: true
           image: ${CSI_S3_IMAGE}
+          resources:
+            limits:
+              ephemeral-storage: 50Mi
           args:
             - "--endpoint=$(CSI_ENDPOINT)"
             - "--nodeid=$(NODE_ID)"
