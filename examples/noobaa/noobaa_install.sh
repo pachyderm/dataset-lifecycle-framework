@@ -3,7 +3,7 @@
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 
 function check_minikube_version() {
-  is_correct_version=$(minikube config get kubernetes-version | grep "v1.17")
+  is_correct_version=$(kubectl version | grep Server | grep "v1.17")
   if [ -z "$is_correct_version" ]; then
     echo "Minikube uses incompatible k8s version"
     echo "Execute 'minikube config set kubernetes-version v1.17.8' and restart minikube"
