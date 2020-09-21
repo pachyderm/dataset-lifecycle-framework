@@ -71,13 +71,18 @@ function install_noobaa() {
 
 function build_data_loader() {
   echo -n "Building NooBaa data loader..."
-  driver_check=$(cat $HOME/.minikube/machines/minikube/config.json | grep DriverName)
-  if [[ $driver_check != *"none"* ]]; then
+  driver_check=$(grep Testfaster $KUBECONFIG >/dev/null 2>&1 && echo "testfaster" || cat $HOME/.minikube/machines/minikube/config.json | grep DriverName)
+  if [[ $driver_check != *"none"* && $driver_check != "testfaster" ]]; then
     eval $(minikube docker-env)
   fi
   docker build -f ${DIR}/Dockerfile-awscli-alpine -t awscli-alpine . >/dev/null 2>&1
-  if [[ $driver_check != *"none"* ]]; then
+  if [[ $driver_check != *"none"* && $driver_check != "testfaster" ]]; then
     eval $(minikube docker-env -u)
+  fi
+  if [[ $driver_check == *"testfaster"* ]]; then
+      echo "Loading awscli-alpine img into testfaster vm"
+      docker save awscli-alpine | (cd ..; testctl ssh --tty=false -- docker load)
+      echo "Done"
   fi
   echo "done"
 }
