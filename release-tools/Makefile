@@ -94,8 +94,8 @@ endef
 #1: user friendly name
 #2: image to load
 define load_containers_minikube
-    @driver_check=$$(grep Testfaster kubeconfig >/dev/null 2>&1 && echo "testfaster" || cat $$HOME/.minikube/machines/minikube/config.json  | grep DriverName);\
-	if [[ $$driver_check == "testfaster" ]]; then docker save $(2) | testctl ssh --tty=false -- docker load;\
+    @driver_check=$$(grep Testfaster $$KUBECONFIG >/dev/null 2>&1 && echo "testfaster" || cat $$HOME/.minikube/machines/minikube/config.json  | grep DriverName);\
+	if [[ $$driver_check == "testfaster" ]]; then docker save $(2) | (cd ..; testctl ssh --tty=false -- docker load);\
     elif [[ $$driver_check != *"none"* ]]; then docker save $(2) | gzip > ./release-tools/_tmp/$(1).tar.gz;\
     eval $$(minikube docker-env);\
     docker load < ./release-tools/_tmp/$(1).tar.gz;\
