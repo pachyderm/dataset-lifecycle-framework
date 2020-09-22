@@ -2,7 +2,7 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-s3_url=$(minikube service s3 --url | head -n1)
+s3_url="http://s3.default.svc"
 key_id=$(${DIR}/noobaa status 2>/dev/null | grep AWS_ACCESS_KEY_ID | awk -F ": " '{print $2}')
 acc_key=$(${DIR}/noobaa status 2>/dev/null | grep AWS_SECRET_ACCESS_KEY | awk -F ": " '{print $2}')
 bucket=$(${DIR}/noobaa bucket list 2>/dev/null | grep my-bucket | awk '{$1=$1};1')
