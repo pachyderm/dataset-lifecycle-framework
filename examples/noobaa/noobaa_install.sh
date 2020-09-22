@@ -81,7 +81,7 @@ function build_data_loader() {
   fi
   if [[ $driver_check == *"testfaster"* ]]; then
       echo "Loading awscli-alpine img into testfaster vm"
-      docker save awscli-alpine | (cd ..; testctl ssh --tty=false -- docker load)
+      docker save awscli-alpine | testctl ssh --tty=false -- docker load
       echo "Done"
   fi
   echo "done"
