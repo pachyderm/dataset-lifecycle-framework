@@ -52,6 +52,7 @@ spec:
       labels:
         app: csi-s3
     spec:
+      dnsPolicy: ClusterFirstWithHostNet
       serviceAccount: csi-s3
       hostNetwork: true
       containers:
