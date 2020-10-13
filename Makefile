@@ -9,7 +9,7 @@ DOCKER_REGISTRY_SIDECARS ?= quay.io/k8scsi
 PULL_SIDECARS ?= true
 
 DATASET_OPERATOR_NAMESPACE ?= default
-NAMESPACES_TO_MONITOR ?= default,anonymous
+NAMESPACES_TO_MONITOR ?= default
 #In case you want to monitor multiple namespaces use comma delimited
 #NAMESPACES_TO_MONITOR ?= default,one-namespace,another-namespace
 
